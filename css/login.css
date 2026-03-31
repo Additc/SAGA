@@ -1,0 +1,110 @@
+    :root {
+      color-scheme: light;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #eef2f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef2f8;
+      color: #0f172a;
+    }
+
+    .login-page {
+      width: min(100%, 420px);
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #dfe3ea;
+      border-radius: 24px;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
+    }
+
+    .card__inner {
+      padding: 32px;
+    }
+
+    .brand {
+      display: block;
+      text-align: center;
+      margin-bottom: 28px;
+      color: #3165ad;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      margin: 0 0 28px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #475569;
+    }
+
+    input {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #0f172a;
+      font-size: 15px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+      background: #ffffff;
+    }
+
+    button {
+      width: 100%;
+      min-height: 48px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }

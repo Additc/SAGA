@@ -1,0 +1,26 @@
+    body {
+            background-color: #f4f6f9;
+        }
+
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            background-color: #003066;
+            color: white;
+            padding-top: 20px;
+        }
+
+        .sidebar .nav-link {
+            color: white;
+        }
+
+        .sidebar .nav-link.active,
+        .sidebar .nav-link:hover {
+            background-color: #1976d2;
+        }
+
+        .content {
+            margin-left: 230px;
+            padding: 30px;
+        }

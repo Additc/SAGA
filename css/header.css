@@ -1,0 +1,46 @@
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #003066;
+    color: white;
+    position: fixed;
+    padding: 20px;
+}
+
+/* LOGO */
+.sidebar .logo h4 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.sidebar .logo small {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* NAV LINKS */
+.sidebar .nav-link {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #145da0;
+}
+
+.sidebar .nav-link.active {
+    background-color: #1976d2;
+    font-weight: 500;
+}
+
+/* CONTENIDO PRINCIPAL */
+.content {
+    margin-left: 240px;
+    padding: 30px;
+}

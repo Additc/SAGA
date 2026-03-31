@@ -1,0 +1,40 @@
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* NAVBAR SUPERIOR */
+        .topbar {
+            background-color: #003066;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            margin-left: 240px;
+        }
+
+        .topbar h5 {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .search-section {
+            margin-left: 240px;
+            padding: 100px;
+        }
+
+
+        .search-box {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .result-placeholder {
+            border: 2px dashed #d6d6d6;
+            padding: 40px;
+            text-align: center;
+            color: #9aa0a6;
+            margin-top: 30px;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
