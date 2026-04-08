@@ -7,54 +7,14 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f4f6f9;
-        }
+      <!-- CSS del header -->
+    <link rel="stylesheet" href="../css/header.css">
 
-        .sidebar {
-            width: 230px;
-            height: 100vh;
-            position: fixed;
-            background-color: #0d3b66;
-            color: white;
-            padding-top: 20px;
-        }
-
-        .sidebar .nav-link {
-            color: white;
-        }
-
-        .sidebar .nav-link.active,
-        .sidebar .nav-link:hover {
-            background-color: #1976d2;
-        }
-
-        .content {
-            margin-left: 230px;
-            padding: 30px;
-        }
-    </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar d-flex flex-column p-3">
-    <h4 class="text-center">SAGA</h4>
-    <small class="text-center mb-4">Sistema de Gestión</small>
-
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link active">Miembros</a>
-        </li>
-        <li>
-            <a href="#" class="nav-link">Registro</a>
-        </li>
-        <li>
-            <a href="#" class="nav-link">Reportes</a>
-        </li>
-    </ul>
-</div>
+<!-- Aquí se cargará el header dinámicamente -->
+<div id="header"></div>
 
 <!-- CONTENIDO -->
 <div class="content">
@@ -62,7 +22,6 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>Gestión de Miembros</h4>
 
-        <!-- Botón que abre el modal -->
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMiembro">
             + Agregar Nuevo Miembro
         </button>
@@ -148,6 +107,16 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script para cargar el header -->
+<script>
+    fetch("components/header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+        })
+        .catch(error => console.error("Error cargando el header:", error));
+</script>
 
 </body>
 </html>
