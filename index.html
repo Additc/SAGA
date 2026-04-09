@@ -2,27 +2,27 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SAGA - Gestión de Miembros</title>
+    <title>SAGA - Gestión de Ciudadanos</title>
 
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-      <!-- CSS del header -->
+    
+    <!-- CSS del header -->
     <link rel="stylesheet" href="../css/header.css">
-
+    
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="../css/ciudadanos.css">
 </head>
 <body>
 
-<!-- Aquí se cargará el header dinámicamente -->
 <div id="header"></div>
 
-<!-- CONTENIDO -->
 <div class="content">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>Gestión de Ciudadanos</h4>
 
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMiembro">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
             + Agregar Nuevo Ciudadano
         </button>
     </div>
@@ -46,8 +46,8 @@
                         <td>555-0101</td>
                         <td>15/01/2024</td>
                         <td>
-                            <button class="btn btn-sm btn-primary">Editar</button>
-                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                            <button class="btn btn-sm btn-primary btn-editar">Editar</button>
+                            <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,8 +56,8 @@
                         <td>555-0102</td>
                         <td>20/02/2024</td>
                         <td>
-                            <button class="btn btn-sm btn-primary">Editar</button>
-                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                            <button class="btn btn-sm btn-primary btn-editar">Editar</button>
+                            <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -67,46 +67,130 @@
 
 </div>
 
-<!-- MODAL -->
-<div class="modal fade" id="modalMiembro" tabindex="-1">
+<!-- ===================== MODAL AGREGAR ===================== -->
+<div class="modal fade" id="modalAgregar" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h5 class="modal-title">Agregar Nuevo Ciudadano</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" placeholder="Ingrese nombre">
+                        <input type="text" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" placeholder="Ingrese teléfono">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Fecha de Ingreso</label>
-                        <input type="date" class="form-control">
+                        <input type="text" class="form-control">
                     </div>
                 </form>
             </div>
-
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button class="btn btn-primary">Guardar</button>
             </div>
+        </div>
+    </div>
+</div>
 
+<!-- ===================== MODAL EDITAR ===================== -->
+<div class="modal fade" id="modalEditar" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Ciudadano</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="editarId">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" id="editarNombre" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="text" id="editarTelefono" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== MODAL ELIMINAR ===================== -->
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="mensajeEliminar"></p>
+                <input type="hidden" id="eliminarId">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger">Eliminar</button>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modalEditar = new bootstrap.Modal(document.getElementById('modalEditar'));
+    const modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
+
+    // BOTÓN EDITAR
+    document.querySelectorAll(".btn-editar").forEach(button => {
+        button.addEventListener("click", function () {
+
+            const fila = this.closest("tr");
+            const id = fila.children[0].textContent;
+            const nombre = fila.children[1].textContent;
+            const telefono = fila.children[2].textContent;
+
+            document.getElementById("editarId").value = id;
+            document.getElementById("editarNombre").value = nombre;
+            document.getElementById("editarTelefono").value = telefono;
+
+            modalEditar.show();
+        });
+    });
+
+    // BOTÓN ELIMINAR
+    document.querySelectorAll(".btn-eliminar").forEach(button => {
+        button.addEventListener("click", function () {
+
+            const fila = this.closest("tr");
+            const id = fila.children[0].textContent;
+            const nombre = fila.children[1].textContent;
+
+            document.getElementById("eliminarId").value = id;
+            document.getElementById("mensajeEliminar").textContent =
+                "¿Está seguro de eliminar al ciudadano " + nombre + " (ID: " + id + ")?";
+
+            modalEliminar.show();
+        });
+    });
+
+});
+</script>
 
 <!-- Script para cargar el header -->
 <script>
