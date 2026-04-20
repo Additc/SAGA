@@ -18,23 +18,22 @@
             font-weight: 400;
         }
 
-        .search-section {
-            margin-left: 240px;
-            padding: 100px;
+        .container {
+            margin-left: 250px;
+            padding-top: 10px;
+            padding-right: 30px;
         }
 
-
-        .search-box {
-            max-width: 600px;
-            margin: auto;
+        .btn-asistencia {
+            border-radius: 10px;        /* bordes redondeados */
+            padding: 20px;
+            font-weight: 400;
+            transition: 0.3s ease;
         }
 
-        .result-placeholder {
-            border: 2px dashed #d6d6d6;
-            padding: 40px;
-            text-align: center;
-            color: #9aa0a6;
-            margin-top: 30px;
-            border-radius: 8px;
-            background-color: #ffffff;
+        .text-ejemplo {
+            font-style: arial;
+            color: black;
+            padding: 30px;
         }
+        
